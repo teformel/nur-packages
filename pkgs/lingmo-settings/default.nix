@@ -10,6 +10,7 @@
 , libxcrypt
 , lingmoui
 , lingmo-core
+, lib_lingmo
 }:
 
 stdenv.mkDerivation rec {
@@ -46,5 +47,6 @@ stdenv.mkDerivation rec {
     libxcrypt
     lingmoui
     lingmo-core
+    lib_lingmo
   ];
 }
