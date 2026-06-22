@@ -34,6 +34,7 @@ stdenv.mkDerivation rec {
     qt6.qtwayland
     qt6.qt5compat
     kdePackages.kwindowsystem
+    kdePackages.kglobalaccel
   ];
 
   cmakeFlags = [
