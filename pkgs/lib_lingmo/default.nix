@@ -7,6 +7,7 @@
 , qt6
 , libcanberra
 , sound-theme-freedesktop
+, libpulseaudio
 }:
 
 stdenv.mkDerivation rec {
@@ -49,5 +50,6 @@ stdenv.mkDerivation rec {
     kdePackages.kio
     libcanberra
     sound-theme-freedesktop
+    libpulseaudio
   ];
 }
