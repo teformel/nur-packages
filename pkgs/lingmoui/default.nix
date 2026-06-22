@@ -20,6 +20,13 @@ stdenv.mkDerivation rec {
     fetchSubmodules = true;
   };
 
+  postPatch = ''
+    # 修复 QHotkey 缺少 find_package 导致找不到 KF6::GlobalAccel 的问题
+    if [ -f "thirdparty/QHotkey/CMakeLists.txt" ]; then
+      sed -i '1i find_package(KF6GlobalAccel REQUIRED)' thirdparty/QHotkey/CMakeLists.txt
+    fi
+  '';
+
   nativeBuildInputs = [
     cmake
     pkg-config
