@@ -6,6 +6,7 @@
 , kdePackages
 , qt6
 , polkit
+, xorg
 , lingmoui
 }:
 
@@ -39,6 +40,7 @@ stdenv.mkDerivation rec {
     kdePackages.kconfig
     kdePackages.polkit-qt-1
     polkit
+    xorg.libSM
     lingmoui
   ];
 }
