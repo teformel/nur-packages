@@ -12,7 +12,7 @@ let
   # Use an older nixpkgs commit (from 2024-04-07) for KF5 packages that were removed in newer nixos-unstable
   pkgsKF5 = import (builtins.fetchTarball {
     url = "https://github.com/NixOS/nixpkgs/archive/600b15aea1b36eeb43833a50b0e96579147099ff.tar.gz";
-    sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+    sha256 = "1hhr6zg8mrpbjmyqk70l296prs4241qwx0yx9lwsldxiqxcc7l2k";
   }) { system = pkgs.system; };
 in
 rec {
