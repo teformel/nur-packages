@@ -1,11 +1,11 @@
 [clash-party]
 src.github = "mihomo-party-org/clash-party"
-src.include_regex = "^v.*"
-src.prefix = "v"
+include_regex = "^v.*"
+prefix = "v"
 fetch.url = "https://github.com/mihomo-party-org/clash-party/releases/download/v$ver/mihomo-party-linux-$ver-amd64.deb"
 
 [ww-manager]
 src.github = "timetetng/wutheringwaves-cli-manager"
-src.include_regex = "^v.*"
-src.prefix = "v"
+include_regex = "^v\\d.*"
+prefix = "v"
 fetch.github = "timetetng/wutheringwaves-cli-manager"
