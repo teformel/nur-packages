@@ -32,7 +32,7 @@ rec {
   lingmo-dock = pkgs.callPackage ./pkgs/lingmo-dock { qt6 = pkgs.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
   lingmo-launcher = pkgs.callPackage ./pkgs/lingmo-launcher { qt6 = pkgs.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
   lingmo-desktop = pkgs.libsForQt5.callPackage ./pkgs/lingmo-desktop { };
-  lingmo-daemon = pkgs.libsForQt5.callPackage ./pkgs/lingmo-daemon { };
+  lingmo-daemon = pkgs.libsForQt5.callPackage ./pkgs/lingmo-daemon { inherit python3; };
   lingmo-filemanager = pkgs.callPackage ./pkgs/lingmo-filemanager { qt6 = pkgs.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
   lingmo-kwin-plugins = pkgs.callPackage ./pkgs/lingmo-kwin-plugins { qt6 = pkgs.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
   lingmo-screenlocker = pkgs.libsForQt5.callPackage ./pkgs/lingmo-screenlocker { };
