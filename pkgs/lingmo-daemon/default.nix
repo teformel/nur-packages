@@ -16,6 +16,20 @@ stdenv.mkDerivation rec {
     find . -name "CMakeLists.txt" -exec sed -i 's|DESTINATION /usr/|DESTINATION |g' {} +
     find . -name "CMakeLists.txt" -exec sed -i 's|DESTINATION /etc/|DESTINATION etc/|g' {} +
     find . -name "CMakeLists.txt" -exec sed -i 's|DESTINATION /etc|DESTINATION etc|g' {} +
+    
+    # QApt is an Ubuntu/Debian specific APT wrapper. It is not available on NixOS.
+    # We stub it out so the daemon can compile.
+    sed -i '/QApt/d' CMakeLists.txt
+    
+    echo '#include "appmanager.h"' > src/appmanager.cpp
+    echo 'AppManager::AppManager(QObject *parent) : QObject(parent) {}' >> src/appmanager.cpp
+    echo 'void AppManager::uninstall(const QString &content) {}' >> src/appmanager.cpp
+    echo 'void AppManager::notifyUninstalling(const QString &packageName) {}' >> src/appmanager.cpp
+    echo 'void AppManager::notifyUninstallFailure(const QString &packageName) {}' >> src/appmanager.cpp
+    echo 'void AppManager::notifyUninstallSuccess(const QString &packageName) {}' >> src/appmanager.cpp
+
+    sed -i '/#include <QApt/d' src/appmanager.h
+    sed -i '/QApt::/d' src/appmanager.h
   '';
 
   nativeBuildInputs = [
