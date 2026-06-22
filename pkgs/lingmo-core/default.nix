@@ -44,6 +44,9 @@ stdenv.mkDerivation rec {
     xorg.libSM
     xorg.libXcursor
     xorg.libX11
+    xorg.xorgserver
+    xorg.xf86inputlibinput
+    xorg.xf86inputsynaptics
     lingmoui
   ];
 }
