@@ -51,5 +51,7 @@ stdenv.mkDerivation rec {
   cmakeFlags = [
     "-DQT_QML_GENERATE_QMLLS_INI=OFF"
     "-DBUILD_TESTING=OFF"
+    "-DQT_INSTALL_QML=${placeholder "out"}/lib/qt-6/qml"
+    "-DINSTALL_QMLDIR=lib/qt-6/qml"
   ];
 }
