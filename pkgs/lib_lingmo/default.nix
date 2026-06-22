@@ -55,5 +55,8 @@ stdenv.mkDerivation rec {
 
   cmakeFlags = [
     "-DCMAKE_CXX_STANDARD=20"
+    "-DCMAKE_CXX_STANDARD_REQUIRED=ON"
   ];
+
+  env.CXXFLAGS = "-std=c++20";
 }
