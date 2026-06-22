@@ -5,6 +5,7 @@
 , pkg-config
 , kdePackages
 , qt6
+, polkit
 , lingmoui
 }:
 
@@ -36,6 +37,7 @@ stdenv.mkDerivation rec {
     kdePackages.kwindowsystem
     kdePackages.kcoreaddons
     kdePackages.kconfig
+    polkit
     lingmoui
   ];
 }
