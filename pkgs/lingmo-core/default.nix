@@ -41,6 +41,8 @@ stdenv.mkDerivation rec {
     kdePackages.polkit-qt-1
     polkit
     xorg.libSM
+    xorg.libXcursor
+    xorg.libX11
     lingmoui
   ];
 }
