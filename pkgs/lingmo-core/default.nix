@@ -39,6 +39,7 @@ stdenv.mkDerivation rec {
     kdePackages.kcoreaddons
     kdePackages.kconfig
     kdePackages.polkit-qt-1
+    kdePackages.kidletime
     polkit
     xorg.libSM
     xorg.libXcursor
