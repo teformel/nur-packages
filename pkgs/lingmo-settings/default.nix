@@ -43,6 +43,8 @@ stdenv.mkDerivation rec {
     kdePackages.networkmanager-qt
     kdePackages.modemmanager-qt
     xorg.libX11
+    xorg.libXcursor
+    xorg.libSM
     freetype
     libxcrypt
     lingmoui
