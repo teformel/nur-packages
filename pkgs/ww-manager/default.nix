@@ -27,6 +27,7 @@ python3Packages.buildPythonApplication rec {
     certifi
     rich
     typing-extensions
+    requests
   ];
 
   # 禁用测试以加快构建速度（如果项目中包含 pytest 等测试，且你想跑的话可以改为 true）
