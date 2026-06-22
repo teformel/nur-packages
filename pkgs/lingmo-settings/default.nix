@@ -16,7 +16,7 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "LingmoOS";
     repo = "lingmo-settings";
-    rev = "main";
+    rev = "78c6f1483594285dc01ea59591f761a570ecea80";
     # TODO: 首次构建将报错，请将报错提供的 Hash 填入此处
     hash = lib.fakeHash;
   };
