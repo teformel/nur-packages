@@ -37,6 +37,7 @@ stdenv.mkDerivation rec {
     kdePackages.kwindowsystem
     kdePackages.kcoreaddons
     kdePackages.kconfig
+    kdePackages.polkit-qt-1
     polkit
     lingmoui
   ];
