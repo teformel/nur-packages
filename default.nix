@@ -31,11 +31,11 @@ rec {
   lingmo-settings = pkgs.callPackage ./pkgs/lingmo-settings { qt6 = pkgs.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
   lingmo-dock = pkgs.callPackage ./pkgs/lingmo-dock { qt6 = pkgs.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
   lingmo-launcher = pkgs.callPackage ./pkgs/lingmo-launcher { qt6 = pkgs.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
-  lingmo-desktop = pkgs.libsForQt5.callPackage ./pkgs/lingmo-desktop { qt5 = pkgs.qt5; };
-  lingmo-daemon = pkgs.libsForQt5.callPackage ./pkgs/lingmo-daemon { qt5 = pkgs.qt5; };
+  lingmo-desktop = pkgsKF5.libsForQt5.callPackage ./pkgs/lingmo-desktop { };
+  lingmo-daemon = pkgsKF5.libsForQt5.callPackage ./pkgs/lingmo-daemon { };
   lingmo-filemanager = pkgs.callPackage ./pkgs/lingmo-filemanager { qt6 = pkgs.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
   lingmo-kwin-plugins = pkgs.callPackage ./pkgs/lingmo-kwin-plugins { qt6 = pkgs.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
-  lingmo-screenlocker = pkgs.libsForQt5.callPackage ./pkgs/lingmo-screenlocker { qt5 = pkgs.qt5; };
+  lingmo-screenlocker = pkgsKF5.libsForQt5.callPackage ./pkgs/lingmo-screenlocker { };
   lingmo-polkit-agent = pkgs.callPackage ./pkgs/lingmo-polkit-agent { qt6 = pkgs.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
   lingmo-sddm-theme = pkgs.callPackage ./pkgs/lingmo-sddm-theme { };
   lingmo-statusbar = pkgs.callPackage ./pkgs/lingmo-statusbar { qt6 = pkgs.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
