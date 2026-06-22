@@ -1,11 +1,15 @@
 { lib, python3Packages, fetchurl, fetchgit, fetchFromGitHub, dockerTools }:
 
-let
-  sources = import ../../_sources/generated.nix { inherit fetchurl fetchgit fetchFromGitHub dockerTools; };
-in
 python3Packages.buildPythonApplication rec {
   pname = "ww-manager"; # 根据 pyproject.toml 的 name 修正
-  inherit (sources.ww-manager) version src;
+  version = "2.1.10";   # 锁定到具体的版本号
+
+  src = fetchFromGitHub {
+    owner = "timetetng";
+    repo = "wutheringwaves-cli-manager";
+    rev = "v${version}"; 
+    hash = "sha256-44nX20ZiGYwZMOiNRDyzLlP18QvZyX6lIMb4UQC9itQ="; 
+  };
 
   # 在解压源码后、构建开始前执行的补丁阶段
   postPatch = ''

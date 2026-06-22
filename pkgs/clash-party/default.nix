@@ -26,12 +26,14 @@
 , makeWrapper
 }:
 
-let
-  sources = import ../../_sources/generated.nix { inherit fetchurl fetchgit fetchFromGitHub dockerTools; };
-in
 stdenv.mkDerivation rec {
   pname = "clash-party";
-  inherit (sources.clash-party) version src;
+  version = "1.9.6";
+
+  src = fetchurl {
+    url = "https://github.com/mihomo-party-org/clash-party/releases/download/v${version}/mihomo-party-linux-${version}-amd64.deb";
+    sha256 = "9fc15417432eafa51dad21217f557c5c4b0292f814e76ffdc6a453a451f581ea";
+  };
 
   nativeBuildInputs = [
     dpkg
