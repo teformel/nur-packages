@@ -34,6 +34,10 @@ stdenv.mkDerivation rec {
     qt6.qt5compat
     kdePackages.kcoreaddons
     kdePackages.kwindowsystem
+    kdePackages.kio
+    kdePackages.solid
+    kdePackages.kconfig
+    kdePackages.kxmlgui
     lingmoui
     lingmo-core
     lib_lingmo
