@@ -1,4 +1,4 @@
-{ stdenv, lib, fetchFromGitHub, cmake, pkg-config, kdePackages, qt6, lingmoui, lingmo-core, lib_lingmo }:
+{ stdenv, lib, fetchFromGitHub, cmake, pkg-config, libsForQt5, qt5 }:
 
 stdenv.mkDerivation rec {
   pname = "lingmo-daemon";
@@ -21,24 +21,17 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [
     cmake
     pkg-config
-    kdePackages.extra-cmake-modules
-    kdePackages.wrapQtAppsHook
-    qt6.qttools
+    libsForQt5.extra-cmake-modules
+    libsForQt5.wrapQtAppsHook
+    qt5.qttools
   ];
 
   buildInputs = [
-    qt6.qtbase
-    qt6.qtdeclarative
-    qt6.qtsvg
-    qt6.qtwayland
-    kdePackages.kcoreaddons
-    kdePackages.kwindowsystem
-    lingmoui
-    lingmo-core
-    lib_lingmo
+    qt5.qtbase
+    qt5.qtdeclarative
+    qt5.qtsvg
+    qt5.qtwayland
+    libsForQt5.kcoreaddons
+    libsForQt5.kwindowsystem
   ];
 }
-
-
-
-
