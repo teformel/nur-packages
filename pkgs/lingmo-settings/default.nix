@@ -5,6 +5,9 @@
 , pkg-config
 , kdePackages
 , qt6
+, xorg
+, freetype
+, libxcrypt
 , lingmoui
 , lingmo-core
 }:
@@ -26,6 +29,7 @@ stdenv.mkDerivation rec {
     pkg-config
     kdePackages.extra-cmake-modules
     kdePackages.wrapQtAppsHook
+    qt6.qttools
   ];
 
   buildInputs = [
@@ -34,6 +38,12 @@ stdenv.mkDerivation rec {
     qt6.qtwayland
     kdePackages.kcoreaddons
     kdePackages.kwindowsystem
+    kdePackages.kconfig
+    kdePackages.networkmanager-qt
+    kdePackages.modemmanager-qt
+    xorg.libX11
+    freetype
+    libxcrypt
     lingmoui
     lingmo-core
   ];
