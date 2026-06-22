@@ -8,8 +8,8 @@ stdenv.mkDerivation rec {
     owner = "LingmoOS";
     repo = "lingmo-desktop";
     rev = "0c2db3a0f856f54a7145a19e6fd0c79fc1e31131";
-    # TODO: Ê×´Î¹¹½¨½«±¨´í£¬Çë½«±¨´íÌá¹©µÄ Hash ÌîÈë´Ë´¦
-    hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+    # TODO: ï¿½×´Î¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë½«ï¿½ï¿½ï¿½ï¿½ï¿½á¹©ï¿½ï¿½ Hash ï¿½ï¿½ï¿½ï¿½Ë´ï¿½
+    hash = "sha256-613S8ofX4vbD6+8FyddxTp6sfd3JshVyI92NVtLOavs=";
   };
 
     postPatch = ''
