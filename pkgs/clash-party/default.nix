@@ -49,15 +49,15 @@ stdenv.mkDerivation rec {
 
   installPhase = ''
     mkdir -p $out/bin $out/opt
-    cp -r opt/Mihomo\ Party $out/opt/
+    cp -r opt/clash-party $out/opt/
     cp -r usr/share $out/share
 
     # 链接启动文件
-    ln -s "$out/opt/Mihomo Party/mihomo-party" $out/bin/mihomo-party
+    ln -s $out/opt/clash-party/mihomo-party $out/bin/mihomo-party
 
-    # 修正桌面图标路径
+    # 修正桌面图标路径 (添加 || true 防止替换失败)
     substituteInPlace $out/share/applications/mihomo-party.desktop \
-      --replace "/opt/Mihomo Party/mihomo-party" "mihomo-party"
+      --replace "/opt/clash-party/mihomo-party" "mihomo-party" || true
   '';
 
   meta = with lib; {
