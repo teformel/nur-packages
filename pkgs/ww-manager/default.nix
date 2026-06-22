@@ -1,19 +1,11 @@
-{ lib, python3Packages, fetchFromGitHub }:
+{ lib, python3Packages, fetchurl, fetchgit, fetchFromGitHub, dockerTools }:
 
+let
+  sources = import ../../_sources/generated.nix { inherit fetchurl fetchgit fetchFromGitHub dockerTools; };
+in
 python3Packages.buildPythonApplication rec {
   pname = "ww-manager"; # 根据 pyproject.toml 的 name 修正
-  version = "2.1.10";   # 锁定到具体的版本号
-
-  src = fetchFromGitHub {
-    owner = "timetetng";
-    repo = "wutheringwaves-cli-manager";
-    # 注意：通常 GitHub 的 Tag 会带个 'v'，比如 v2.1.10。
-    # 如果拉取失败提示找不到 revision，可以改为 rev = version; 或去仓库确认 Tag 名称。
-    rev = "v${version}"; 
-    
-    # 第一次构建依然会报错，提示哈希不匹配，请将终端里正确的 sha256 填入这里
-    hash = "sha256-44nX20ZiGYwZMOiNRDyzLlP18QvZyX6lIMb4UQC9itQ="; 
-  };
+  inherit (sources.ww-manager) version src;
 
   # 在解压源码后、构建开始前执行的补丁阶段
   postPatch = ''
