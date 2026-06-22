@@ -9,7 +9,7 @@ stdenv.mkDerivation rec {
     repo = "lingmo-filemanager";
     rev = "c0ec387386c174db9bb5461071dcb76fd91d3808";
     # TODO: 首次构建将报错，请将报错提供的 Hash 填入此处
-    hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+    hash = "sha256-vkF4y0t+cAEM8CfMi+Dsx1YLVyydIqMpcmWWOi/BcAg=";
   };
 
     postPatch = ''
