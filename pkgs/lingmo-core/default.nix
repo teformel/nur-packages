@@ -25,6 +25,7 @@ stdenv.mkDerivation rec {
     pkg-config
     kdePackages.extra-cmake-modules
     kdePackages.wrapQtAppsHook
+    qt6.qttools
   ];
 
   buildInputs = [
