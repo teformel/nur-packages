@@ -28,8 +28,8 @@ stdenv.mkDerivation rec {
     # 修复 Compatible 模块缺少 Qt6::Gui 声明的问题（GuiPrivate 会随 Gui 自动导入，单独 find 会报错找不到 Config）
     if [ -f "Compatible/CMakeLists.txt" ]; then
       sed -i '1i find_package(Qt6 COMPONENTS Gui REQUIRED)' Compatible/CMakeLists.txt
-      sed -i 's/Qt6::GuiPrivate/Qt6::Gui/g' Compatible/CMakeLists.txt
     fi
+    find . -name "CMakeLists.txt" -exec sed -i 's/Qt6::GuiPrivate/Qt6::Gui/g' {} +
     # 彻底拦截 ecm_query_qt 覆盖安装路径的行为，强行绑定到独立沙盒
     sed -i 's/ecm_query_qt(INSTALL_QMLDIR QT_INSTALL_QML)/set(INSTALL_QMLDIR "\$\{CMAKE_INSTALL_PREFIX\}\/lib\/qt-6\/qml")/g' CMakeLists.txt
     sed -i 's/query_qmake(INSTALL_QMLDIR QT_INSTALL_QML)/set(INSTALL_QMLDIR "\$\{CMAKE_INSTALL_PREFIX\}\/lib\/qt-6\/qml")/g' CMakeLists.txt
