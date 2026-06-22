@@ -18,6 +18,7 @@ stdenv.mkDerivation rec {
     find . -name "CMakeLists.txt" -exec sed -i 's|DESTINATION /etc|DESTINATION etc|g' {} +
     find . -name "CMakeLists.txt" -exec sed -i 's/Qt5/Qt6/g' {} +
     find . -name "CMakeLists.txt" -exec sed -i 's/qt5_create_translation/qt6_create_translation/g' {} +
+    find . -name "CMakeLists.txt" -exec sed -i 's/KF5/KF6/g' {} +
   '';
 
   nativeBuildInputs = [
@@ -35,6 +36,7 @@ stdenv.mkDerivation rec {
     qt6.qtwayland
     kdePackages.kcoreaddons
     kdePackages.kwindowsystem
+    kdePackages.kio
     lingmoui
     lingmo-core
     lib_lingmo
