@@ -13,11 +13,20 @@ stdenv.mkDerivation rec {
   };
 
     postPatch = ''
+    # Lingmo uses KDecoration3 but KDE Plasma 6 still uses KDecoration2.
+    sed -i 's/KDecoration3/KDecoration2/g' plugins/decoration/CMakeLists.txt plugins/decoration/*.cpp plugins/decoration/*.h
+    sed -i 's/kdecoration3/kdecoration2/g' plugins/decoration/CMakeLists.txt plugins/decoration/*.cpp plugins/decoration/*.h
+    sed -i 's/DecoratedWindow/DecoratedClient/g' plugins/decoration/*.cpp plugins/decoration/*.h
+    sed -i 's/\bwindow()/client()/g' plugins/decoration/*.cpp plugins/decoration/*.h
+    sed -i 's/const QRectF \&repaintArea/const QRect \&repaintArea/g' plugins/decoration/*.cpp plugins/decoration/*.h
+    sed -i 's/const QRectF \&repaintRegion/const QRect \&repaintRegion/g' plugins/decoration/*.cpp plugins/decoration/*.h
+
     find . -name "CMakeLists.txt" -exec sed -i 's|DESTINATION "/usr/|DESTINATION "|g' {} +
     find . -name "CMakeLists.txt" -exec sed -i 's|DESTINATION "/etc/|DESTINATION "etc/|g' {} +
     find . -name "CMakeLists.txt" -exec sed -i 's|DESTINATION /usr/|DESTINATION |g' {} +
     find . -name "CMakeLists.txt" -exec sed -i 's|DESTINATION /etc/|DESTINATION etc/|g' {} +
     find . -name "CMakeLists.txt" -exec sed -i 's|DESTINATION /etc|DESTINATION etc|g' {} +
+    find . -name "CMakeLists.txt" -exec sed -i 's|''${QT_PLUGINS_DIR}|lib/qt-6/plugins|g' {} +
   '';
 
   nativeBuildInputs = [
