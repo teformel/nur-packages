@@ -52,4 +52,8 @@ stdenv.mkDerivation rec {
     sound-theme-freedesktop
     libpulseaudio
   ];
+
+  cmakeFlags = [
+    "-DCMAKE_CXX_STANDARD=20"
+  ];
 }
