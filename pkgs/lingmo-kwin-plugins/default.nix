@@ -9,7 +9,7 @@ stdenv.mkDerivation rec {
     repo = "lingmo-kwin-plugins";
     rev = "988697004e2828d48e6a970d8516671a3387a677";
     # TODO: 首次构建将报错，请将报错提供的 Hash 填入此处
-    hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+    hash = "sha256-xyvjGUCsq+5lSVG7eK7OK1tDaeJTrKvTPA9ntVCRgk8=";
   };
 
     postPatch = ''
@@ -35,6 +35,8 @@ stdenv.mkDerivation rec {
     qt6.qtwayland
     kdePackages.kcoreaddons
     kdePackages.kwindowsystem
+    kdePackages.kconfig
+    kdePackages.kdecoration
     lingmoui
     lingmo-core
     lib_lingmo
