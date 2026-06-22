@@ -8,7 +8,7 @@ stdenv.mkDerivation rec {
     owner = "LingmoOS";
     repo = "lingmo-sddm-theme";
     rev = "3b38408325e387452cd1b28ea2dbefbe584278c8";
-    hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+    hash = "sha256-S9un0XAEVy9d6A40U2LuKtrrCxbNtooGSoFdTvEShsA=";
   };
 
     postPatch = ''
