@@ -37,6 +37,6 @@ rec {
   lingmo-kwin-plugins = pkgs.callPackage ./pkgs/lingmo-kwin-plugins { qt6 = pkgs.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
   lingmo-screenlocker = pkgs.libsForQt5.callPackage ./pkgs/lingmo-screenlocker { };
   lingmo-polkit-agent = pkgs.callPackage ./pkgs/lingmo-polkit-agent { qt6 = pkgs.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
-  lingmo-sddm-theme = pkgs.callPackage ./pkgs/lingmo-sddm-theme { qt6 = pkgs.kdePackages; };
+  lingmo-sddm-theme = pkgs.callPackage ./pkgs/lingmo-sddm-theme { };
   lingmo-statusbar = pkgs.callPackage ./pkgs/lingmo-statusbar { qt6 = pkgs.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
 }
