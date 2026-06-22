@@ -8,7 +8,10 @@
 #     nix-build -A mypackage
 
 { pkgs ? import <nixpkgs> { } }:
-
+let
+  # Use an older nixpkgs commit (from 2024-04-07) for KF5 packages that were removed in newer nixos-unstable
+  pkgsKF5 = import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/600b15aea1b36eeb43833a50b0e96579147099ff.tar.gz") { system = pkgs.system; };
+in
 rec {
   # The `lib`, `overlays`, `nixosModules`, `homeModules`,
   # `darwinModules` and `flakeModules` names are special
