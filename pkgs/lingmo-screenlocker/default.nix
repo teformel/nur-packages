@@ -1,4 +1,4 @@
-{ stdenv, lib, fetchFromGitHub, cmake, pkg-config, kdePackages, qt6, xorg, pam }:
+{ stdenv, lib, fetchFromGitHub, cmake, pkg-config, libsForQt5, qt5, xorg, pam }:
 
 stdenv.mkDerivation rec {
   pname = "lingmo-screenlocker";
@@ -17,24 +17,20 @@ stdenv.mkDerivation rec {
     find . -name "CMakeLists.txt" -exec sed -i 's|DESTINATION /usr/|DESTINATION |g' {} +
     find . -name "CMakeLists.txt" -exec sed -i 's|DESTINATION /etc/|DESTINATION etc/|g' {} +
     find . -name "CMakeLists.txt" -exec sed -i 's|DESTINATION /etc|DESTINATION etc|g' {} +
-    find . -name "CMakeLists.txt" -exec sed -i 's|''${QT_PLUGINS_DIR}|lib/qt-6/plugins|g' {} +
-
-    # Try to build with Qt6 instead of Qt5
-    find . -name "CMakeLists.txt" -exec sed -i 's/Qt5/Qt6/g' {} +
-    find . -name "CMakeLists.txt" -exec sed -i 's/KF5/KF6/g' {} +
+    find . -name "CMakeLists.txt" -exec sed -i 's|''${QT_PLUGINS_DIR}|lib/qt-5/plugins|g' {} +
   '';
 
   nativeBuildInputs = [
     cmake
     pkg-config
-    kdePackages.wrapQtAppsHook
-    kdePackages.extra-cmake-modules
+    libsForQt5.wrapQtAppsHook
   ];
 
   buildInputs = [
-    qt6.qtbase
-    qt6.qtdeclarative
-    qt6.qttools
+    qt5.qtbase
+    qt5.qtx11extras
+    qt5.qtdeclarative
+    qt5.qttools
     xorg.libX11
     pam
   ];
