@@ -9,17 +9,17 @@
 
 { pkgs ? import <nixpkgs> { } }:
 let
-  # Use an older nixpkgs commit (from 2024-04-07) for KF5 packages that were removed in newer nixos-unstable
-  pkgsKF5 = import (builtins.fetchTarball {
-    url = "https://github.com/NixOS/nixpkgs/archive/600b15aea1b36eeb43833a50b0e96579147099ff.tar.gz";
-    sha256 = "1hhr6zg8mrpbjmyqk70l296prs4241qwx0yx9lwsldxiqxcc7l2k";
-  }) { system = pkgs.system; };
-  # Use the same old nixpkgs for Qt6 LingmoOS packages
-  # LingmoOS upstream pins Qt6/KF6 APIs that break with nixpkgs-unstable (Qt 6.6→6.11, KScreen API changes)
-  pkgsQt6Legacy = import (builtins.fetchTarball {
-    url = "https://github.com/NixOS/nixpkgs/archive/600b15aea1b36eeb43833a50b0e96579147099ff.tar.gz";
-    sha256 = "1hhr6zg8mrpbjmyqk70l296prs4241qwx0yx9lwsldxiqxcc7l2k";
-  }) { system = pkgs.system; };
+  # LingmoOS packages temporarily disabled (2026-06-23)
+  # Was using pinned nixpkgs for Qt6/KF5 — reactivate when ready to build LingmoOS
+  #
+  # pkgsKF5 = import (builtins.fetchTarball {
+  #   url = "https://github.com/NixOS/nixpkgs/archive/600b15aea1b36eeb43833a50b0e96579147099ff.tar.gz";
+  #   sha256 = "1hhr6zg8mrpbjmyqk70l296prs4241qwx0yx9lwsldxiqxcc7l2k";
+  # }) { system = pkgs.system; };
+  # pkgsQt6Legacy = import (builtins.fetchTarball {
+  #   url = "https://github.com/NixOS/nixpkgs/archive/600b15aea1b36eeb43833a50b0e96579147099ff.tar.gz";
+  #   sha256 = "1hhr6zg8mrpbjmyqk70l296prs4241qwx0yx9lwsldxiqxcc7l2k";
+  # }) { system = pkgs.system; };
 in
 rec {
   # The `lib`, `overlays`, `nixosModules`, `homeModules`,
@@ -35,20 +35,20 @@ rec {
   clash-party = pkgs.callPackage ./pkgs/clash-party { };
   ww-manager = pkgs.callPackage ./pkgs/ww-manager { };
   
-  # Lingmo OS 桌面套件
-  # Qt6 包使用 pinned nixpkgs（LingmoOS 上游锁定在 Qt 6.6/KF 6.0 API，不兼容 nixpkgs-unstable 的 Qt 6.11/KScreen 6.6）
-  lib_lingmo = pkgsQt6Legacy.callPackage ./pkgs/lib_lingmo { qt6 = pkgsQt6Legacy.kdePackages; };
-  lingmoui = pkgsQt6Legacy.callPackage ./pkgs/lingmoui { qt6 = pkgsQt6Legacy.kdePackages; };
-  lingmo-core = pkgsQt6Legacy.callPackage ./pkgs/lingmo-core { qt6 = pkgsQt6Legacy.kdePackages; inherit lingmoui; };
-  lingmo-settings = pkgsQt6Legacy.callPackage ./pkgs/lingmo-settings { qt6 = pkgsQt6Legacy.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
-  lingmo-dock = pkgsQt6Legacy.callPackage ./pkgs/lingmo-dock { qt6 = pkgsQt6Legacy.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
-  lingmo-launcher = pkgsQt6Legacy.callPackage ./pkgs/lingmo-launcher { qt6 = pkgsQt6Legacy.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
-  lingmo-desktop = pkgsKF5.libsForQt5.callPackage ./pkgs/lingmo-desktop { };
-  lingmo-daemon = pkgsKF5.libsForQt5.callPackage ./pkgs/lingmo-daemon { };
-  lingmo-filemanager = pkgsQt6Legacy.callPackage ./pkgs/lingmo-filemanager { qt6 = pkgsQt6Legacy.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
-  lingmo-kwin-plugins = pkgsQt6Legacy.callPackage ./pkgs/lingmo-kwin-plugins { qt6 = pkgsQt6Legacy.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
-  lingmo-screenlocker = pkgsKF5.libsForQt5.callPackage ./pkgs/lingmo-screenlocker { };
-  lingmo-polkit-agent = pkgsQt6Legacy.callPackage ./pkgs/lingmo-polkit-agent { qt6 = pkgsQt6Legacy.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
-  lingmo-sddm-theme = pkgs.callPackage ./pkgs/lingmo-sddm-theme { };
-  lingmo-statusbar = pkgsQt6Legacy.callPackage ./pkgs/lingmo-statusbar { qt6 = pkgsQt6Legacy.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
+  # Lingmo OS 桌面套件（2026-06-23 暂时禁用）
+  # 启用时需要同步恢复 let 中的 pkgsKF5 / pkgsQt6Legacy
+  # lib_lingmo = pkgsQt6Legacy.callPackage ./pkgs/lib_lingmo { qt6 = pkgsQt6Legacy.kdePackages; };
+  # lingmoui = pkgsQt6Legacy.callPackage ./pkgs/lingmoui { qt6 = pkgsQt6Legacy.kdePackages; };
+  # lingmo-core = pkgsQt6Legacy.callPackage ./pkgs/lingmo-core { qt6 = pkgsQt6Legacy.kdePackages; inherit lingmoui; };
+  # lingmo-settings = pkgsQt6Legacy.callPackage ./pkgs/lingmo-settings { qt6 = pkgsQt6Legacy.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
+  # lingmo-dock = pkgsQt6Legacy.callPackage ./pkgs/lingmo-dock { qt6 = pkgsQt6Legacy.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
+  # lingmo-launcher = pkgsQt6Legacy.callPackage ./pkgs/lingmo-launcher { qt6 = pkgsQt6Legacy.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
+  # lingmo-desktop = pkgsKF5.libsForQt5.callPackage ./pkgs/lingmo-desktop { };
+  # lingmo-daemon = pkgsKF5.libsForQt5.callPackage ./pkgs/lingmo-daemon { };
+  # lingmo-filemanager = pkgsQt6Legacy.callPackage ./pkgs/lingmo-filemanager { qt6 = pkgsQt6Legacy.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
+  # lingmo-kwin-plugins = pkgsQt6Legacy.callPackage ./pkgs/lingmo-kwin-plugins { qt6 = pkgsQt6Legacy.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
+  # lingmo-screenlocker = pkgsKF5.libsForQt5.callPackage ./pkgs/lingmo-screenlocker { };
+  # lingmo-polkit-agent = pkgsQt6Legacy.callPackage ./pkgs/lingmo-polkit-agent { qt6 = pkgsQt6Legacy.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
+  # lingmo-sddm-theme = pkgs.callPackage ./pkgs/lingmo-sddm-theme { };
+  # lingmo-statusbar = pkgsQt6Legacy.callPackage ./pkgs/lingmo-statusbar { qt6 = pkgsQt6Legacy.kdePackages; inherit lingmoui lingmo-core lib_lingmo; };
 }
