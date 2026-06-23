@@ -22,8 +22,6 @@ stdenv.mkDerivation rec {
   };
 
   postPatch = ''
-    sed -i 's/set(CMAKE_CXX_STANDARD 17)/set(CMAKE_CXX_STANDARD 20)/g' CMakeLists.txt
-    
     # 彻底拦截 ecm_query_qt 覆盖安装路径的行为
     sed -i 's/ecm_query_qt(INSTALL_QMLDIR QT_INSTALL_QML)/set(INSTALL_QMLDIR "\$\{CMAKE_INSTALL_PREFIX\}\/lib\/qt-6\/qml")/g' CMakeLists.txt
     
