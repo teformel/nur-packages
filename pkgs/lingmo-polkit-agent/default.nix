@@ -38,6 +38,8 @@ stdenv.mkDerivation rec {
     lingmo-core
     lib_lingmo
   ];
+
+  meta.broken = true; # 需要 Dtk6 (Deepin Toolkit)，nixpkgs 中不存在
 }
 
 
