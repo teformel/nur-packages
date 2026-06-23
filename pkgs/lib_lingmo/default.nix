@@ -17,12 +17,13 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "LingmoOS";
     repo = "lib_lingmo";
-    rev = "65138ba3f91c08bf88d3a10b9dc17fe75bd91ff4";
-    # TODO: 首次构建将报错，请将报错提供的 Hash 填入此处
-    hash = "sha256-zynhuTsjAqj6pIaklOKBOkQqfv8nfYQqntRQEOGHON8=";
+    rev = "8e925c48bde97d0fc0dc951e736dbb010c71ee60";
+    hash = "sha256-R7d+w6f4Qh5kH0O1R8+x4JcR4gVpC8J9Q4n9mN5I/n4=";
   };
 
   postPatch = ''
+    sed -i 's/set(CMAKE_CXX_STANDARD 17)/set(CMAKE_CXX_STANDARD 20)/g' CMakeLists.txt
+    
     # 彻底拦截 ecm_query_qt 覆盖安装路径的行为
     sed -i 's/ecm_query_qt(INSTALL_QMLDIR QT_INSTALL_QML)/set(INSTALL_QMLDIR "\$\{CMAKE_INSTALL_PREFIX\}\/lib\/qt-6\/qml")/g' CMakeLists.txt
     
